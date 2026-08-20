@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>✦ Shedeggsky</title>
+
   <meta
     name="description"
-    content="Shedeggsky — developer, maker, tech enjoyer and Linux guy."
+    content="Shedeggsky — developer, maker, Linux enjoyer and professional tinkerer."
   >
 
   <meta name="theme-color" content="#7c3aed">
-
-  <title>✦ Shedeggsky</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,16 +23,12 @@
 
   <style>
 
-    /* =========================================================
-       VARIABLES
-    ========================================================= */
-
     :root {
       --bg: #070a12;
-      --bg-secondary: #0b0f19;
+      --bg2: #0b0f19;
 
-      --card: rgba(17, 24, 39, 0.64);
-      --card-hover: rgba(24, 32, 52, 0.82);
+      --card: rgba(17, 24, 39, 0.62);
+      --card-hover: rgba(24, 32, 52, 0.78);
 
       --purple: #a78bfa;
       --purple-dark: #7c3aed;
@@ -50,28 +46,20 @@
     }
 
 
-    /* =========================================================
-       RESET
-    ========================================================= */
-
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
+
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: 100px;
     }
 
-    body {
-      min-height: 100%;
-      height: auto;
-      overflow-x: hidden;
-      overflow-y: auto;
 
-      color: var(--text);
+    body {
+      min-height: 100vh;
 
       background:
         radial-gradient(
@@ -79,79 +67,68 @@
           rgba(124, 58, 237, 0.16),
           transparent 30%
         ),
-
         radial-gradient(
           circle at 85% 20%,
           rgba(34, 211, 238, 0.10),
           transparent 30%
         ),
-
         radial-gradient(
           circle at 50% 80%,
           rgba(52, 211, 153, 0.06),
           transparent 35%
         ),
-
         var(--bg);
 
+      color: var(--text);
+
       font-family: "Inter", sans-serif;
+
       line-height: 1.6;
+
+      overflow-x: hidden;
+      overflow-y: auto;
     }
 
-    body::before {
-      content: "";
-
-      position: fixed;
-      inset: 0;
-
-      pointer-events: none;
-
-      z-index: -2;
-
-      opacity: 0.025;
-
-      background-image:
-        linear-gradient(
-          rgba(255, 255, 255, 0.8) 1px,
-          transparent 1px
-        ),
-
-        linear-gradient(
-          90deg,
-          rgba(255, 255, 255, 0.8) 1px,
-          transparent 1px
-        );
-
-      background-size: 42px 42px;
-    }
 
     ::selection {
+      background: var(--purple);
       color: white;
-      background: var(--purple-dark);
     }
+
 
     a {
       color: inherit;
       text-decoration: none;
     }
 
+
     img {
       max-width: 100%;
+      height: auto;
     }
 
 
-    /* =========================================================
+    .container {
+      width: min(1150px, 92%);
+      margin: auto;
+    }
+
+
+    /* =========================
        BACKGROUND
-    ========================================================= */
+    ========================= */
 
     .background {
       position: fixed;
       inset: 0;
 
+      pointer-events: none;
+
       z-index: -1;
 
-      pointer-events: none;
+      overflow: hidden;
     }
+
 
     .orb {
       position: absolute;
@@ -161,37 +138,41 @@
 
       border-radius: 50%;
 
-      filter: blur(105px);
+      filter: blur(100px);
 
-      opacity: 0.11;
+      opacity: 0.12;
 
-      animation: float 14s ease-in-out infinite;
+      animation: float 12s ease-in-out infinite;
     }
+
 
     .orb.one {
-      top: -170px;
-      left: -170px;
-
       background: var(--purple);
+
+      top: -150px;
+      left: -150px;
     }
 
-    .orb.two {
-      top: 25%;
-      right: -190px;
 
+    .orb.two {
       background: var(--cyan);
+
+      right: -180px;
+      top: 25%;
 
       animation-delay: -4s;
     }
 
-    .orb.three {
-      bottom: -210px;
-      left: 35%;
 
+    .orb.three {
       background: var(--green);
+
+      bottom: -200px;
+      left: 35%;
 
       animation-delay: -8s;
     }
+
 
     @keyframes float {
 
@@ -201,14 +182,15 @@
       }
 
       50% {
-        transform: translate(38px, -28px);
+        transform: translate(40px, -30px);
       }
+
     }
 
 
-    /* =========================================================
+    /* =========================
        NAVIGATION
-    ========================================================= */
+    ========================= */
 
     nav {
       position: sticky;
@@ -217,7 +199,7 @@
 
       z-index: 100;
 
-      width: min(920px, 92%);
+      width: min(900px, 92%);
 
       margin: 16px auto 0;
 
@@ -225,21 +207,19 @@
 
       justify-content: center;
 
-      gap: 6px;
+      gap: 8px;
 
       padding: 8px;
 
       background: rgba(7, 10, 18, 0.72);
 
+      backdrop-filter: blur(18px);
+
       border: 1px solid var(--border);
 
       border-radius: 999px;
-
-      backdrop-filter: blur(18px);
-
-      box-shadow:
-        0 12px 40px rgba(0, 0, 0, 0.18);
     }
+
 
     nav a {
       color: var(--muted);
@@ -248,39 +228,25 @@
 
       border-radius: 999px;
 
-      font-family: "Fira Code", monospace;
-
-      font-size: 12px;
+      font-size: 13px;
 
       transition: 0.2s ease;
     }
 
-    nav a:hover,
-    nav a.active {
+
+    nav a:hover {
       color: white;
 
-      background:
-        rgba(167, 139, 250, 0.12);
+      background: rgba(167, 139, 250, 0.12);
     }
 
 
-    /* =========================================================
-       CONTAINER
-    ========================================================= */
-
-    .container {
-      width: min(1150px, 92%);
-
-      margin: auto;
-    }
-
-
-    /* =========================================================
+    /* =========================
        HERO
-    ========================================================= */
+    ========================= */
 
     .hero {
-      min-height: 86vh;
+      min-height: 82vh;
 
       display: flex;
 
@@ -288,16 +254,29 @@
 
       justify-content: center;
 
-      padding: 85px 0 70px;
-
       text-align: center;
+
+      padding: 70px 0;
     }
+
 
     .hero-content {
       width: 100%;
 
-      max-width: 950px;
+      max-width: 1000px;
+
+      margin: auto;
     }
+
+
+    .hero-header {
+      width: 100%;
+
+      display: block;
+
+      margin-bottom: 30px;
+    }
+
 
     .badge {
       display: inline-flex;
@@ -306,186 +285,115 @@
 
       gap: 8px;
 
-      margin-bottom: 26px;
-
       padding: 7px 14px;
 
-      color: var(--muted);
-
-      background:
-        rgba(167, 139, 250, 0.07);
-
-      border:
-        1px solid var(--border);
+      border: 1px solid var(--border);
 
       border-radius: 999px;
 
-      font:
-        12px "Fira Code",
-        monospace;
+      background: rgba(167, 139, 250, 0.07);
+
+      color: var(--muted);
+
+      font-family: "Fira Code", monospace;
+
+      font-size: 12px;
+
+      margin-bottom: 24px;
     }
+
 
     .status-dot {
       width: 8px;
       height: 8px;
 
-      border-radius: 50%;
-
       background: var(--green);
 
-      box-shadow:
-        0 0 12px var(--green);
+      border-radius: 50%;
 
-      animation:
-        pulse 2s ease-in-out infinite;
+      box-shadow: 0 0 12px var(--green);
     }
 
-    @keyframes pulse {
-
-      0%,
-      100% {
-        opacity: 1;
-        transform: scale(1);
-      }
-
-      50% {
-        opacity: 0.5;
-        transform: scale(0.82);
-      }
-    }
-
-    .hero h1 {
-      display: inline-block;
-
-      margin: 0 0 22px;
-
-      /*
-        IMPORTANT:
-        Extra bottom padding prevents
-        "ggy" from touching the next line.
-      */
-
-      padding: 0 0 16px;
-
-      color: transparent;
-
-      font-size:
-        clamp(54px, 10vw, 112px);
-
-      line-height: 1.1;
-
-      letter-spacing: -4px;
-
-      background:
-        linear-gradient(
-          120deg,
-          var(--purple),
-          var(--cyan),
-          var(--green)
-        );
-
-      -webkit-background-clip: text;
-      background-clip: text;
-
-      text-shadow:
-        0 0 45px
-        rgba(167, 139, 250, 0.08);
-    }
 
     .subtitle {
+      font-family: "Fira Code", monospace;
+
       color: var(--muted);
 
-      font:
-        clamp(13px, 2vw, 17px)
-        "Fira Code",
-        monospace;
+      font-size: clamp(13px, 2vw, 17px);
+
+      margin-top: 25px;
     }
 
-    .typing {
-      min-height: 30px;
 
-      margin: 28px auto;
-
-      color: var(--purple);
-
-      font:
-        15px "Fira Code",
-        monospace;
-    }
-
-    .cursor {
-      animation:
-        blink 0.8s infinite;
-    }
-
-    @keyframes blink {
-      50% {
-        opacity: 0;
-      }
-    }
+    /* =========================
+       HERO BUTTONS
+    ========================= */
 
     .buttons {
       display: flex;
 
       justify-content: center;
 
-      flex-wrap: wrap;
-
       gap: 12px;
 
-      margin-top: 28px;
+      flex-wrap: wrap;
+
+      margin-top: 30px;
     }
+
 
     .button {
       padding: 12px 20px;
 
-      color: white;
-
-      background:
-        rgba(17, 24, 39, 0.62);
-
-      border:
-        1px solid var(--border);
-
       border-radius: 12px;
+
+      font-weight: 600;
 
       font-size: 14px;
 
-      font-weight: 600;
+      border: 1px solid var(--border);
+
+      background: rgba(17, 24, 39, 0.6);
 
       transition: 0.25s ease;
     }
 
+
     .button:hover {
       transform: translateY(-3px);
 
-      border-color:
-        rgba(167, 139, 250, 0.45);
+      border-color: var(--purple);
 
       box-shadow:
-        0 12px 35px
-        rgba(124, 58, 237, 0.15);
+        0 10px 30px rgba(124, 58, 237, 0.15);
     }
 
-    .button.primary {
-      border-color: transparent;
 
+    .button.primary {
       background:
         linear-gradient(
           135deg,
           var(--purple-dark),
           #2563eb
         );
+
+      border: none;
     }
 
 
-    /* =========================================================
+    /* =========================
        SECTIONS
-    ========================================================= */
+    ========================= */
 
     section {
-      padding: 82px 0;
+      display: block;
+
+      padding: 90px 0;
+
+      min-height: 200px;
     }
+
 
     .section-title {
       display: flex;
@@ -494,51 +402,51 @@
 
       gap: 12px;
 
-      margin-bottom: 30px;
-
       font-size: 28px;
+
+      margin-bottom: 35px;
     }
+
 
     .section-title span {
       color: var(--purple);
 
-      font:
-        700 15px "Fira Code",
-        monospace;
+      font-family: "Fira Code", monospace;
     }
 
+
+    /* =========================
+       CARDS
+    ========================= */
+
     .card {
-      position: relative;
-
-      padding: 25px;
-
-      overflow: hidden;
-
       background: var(--card);
 
-      border:
-        1px solid var(--border);
+      border: 1px solid var(--border);
 
       border-radius: var(--radius);
+
+      padding: 25px;
 
       backdrop-filter: blur(14px);
 
       transition: 0.25s ease;
     }
 
+
     .card:hover {
+      transform: translateY(-4px);
+
       background: var(--card-hover);
 
       border-color:
         rgba(167, 139, 250, 0.3);
-
-      transform: translateY(-3px);
     }
 
 
-    /* =========================================================
+    /* =========================
        ABOUT
-    ========================================================= */
+    ========================= */
 
     .about-grid {
       display: grid;
@@ -549,17 +457,19 @@
       gap: 20px;
     }
 
-    .terminal {
-      overflow: hidden;
 
+    .terminal {
       background: #05070c;
+
+      border-radius: 14px;
 
       border:
         1px solid
         rgba(255, 255, 255, 0.06);
 
-      border-radius: 14px;
+      overflow: hidden;
     }
+
 
     .terminal-head {
       display: flex;
@@ -571,8 +481,10 @@
       background: #0d111c;
     }
 
+
     .terminal-head i {
       width: 10px;
+
       height: 10px;
 
       border-radius: 50%;
@@ -580,58 +492,70 @@
       background: #475569;
     }
 
+
     .terminal-body {
       padding: 20px;
 
+      font-family: "Fira Code", monospace;
+
+      font-size: 13px;
+
       color: var(--muted);
 
-      font:
-        13px/1.8
-        "Fira Code",
-        monospace;
+      overflow-x: auto;
     }
+
 
     .purple {
       color: var(--purple);
     }
 
-    .cyan {
-      color: var(--cyan);
-    }
 
     .green {
       color: var(--green);
     }
 
+
+    .cyan {
+      color: var(--cyan);
+    }
+
+
+    /* =========================
+       FACTS
+    ========================= */
+
     .facts {
       display: grid;
 
-      gap: 13px;
+      gap: 12px;
     }
+
 
     .fact {
       display: flex;
 
       justify-content: space-between;
 
-      gap: 18px;
+      gap: 20px;
 
-      padding-bottom: 13px;
+      padding-bottom: 12px;
 
       border-bottom:
         1px solid
         rgba(255, 255, 255, 0.05);
     }
 
+
     .fact:last-child {
       border-bottom: 0;
-
-      padding-bottom: 0;
     }
+
 
     .fact span:first-child {
       color: var(--muted);
     }
+
 
     .fact span:last-child {
       color: var(--purple);
@@ -640,21 +564,27 @@
     }
 
 
-    /* =========================================================
+    /* =========================
        STACK
-    ========================================================= */
+    ========================= */
 
     .stack {
       text-align: center;
     }
 
-    .stack img {
+
+    .stack-icons {
       display: block;
 
       width: 100%;
+
+      max-width: 950px;
+
+      margin: auto;
     }
 
-    .custom-tags {
+
+    .stack-tags {
       display: flex;
 
       justify-content: center;
@@ -663,32 +593,33 @@
 
       gap: 8px;
 
-      margin-top: 22px;
+      margin-top: 25px;
     }
+
 
     .tag {
       padding: 5px 10px;
 
-      color: var(--purple);
+      border-radius: 7px;
+
+      font-family: "Fira Code", monospace;
+
+      font-size: 11px;
 
       background:
         rgba(167, 139, 250, 0.08);
 
+      color: var(--purple);
+
       border:
         1px solid
-        rgba(167, 139, 250, 0.13);
-
-      border-radius: 8px;
-
-      font:
-        11px "Fira Code",
-        monospace;
+        rgba(167, 139, 250, 0.12);
     }
 
 
-    /* =========================================================
+    /* =========================
        PROJECTS
-    ========================================================= */
+    ========================= */
 
     .projects {
       display: grid;
@@ -699,6 +630,14 @@
       gap: 18px;
     }
 
+
+    .project {
+      position: relative;
+
+      overflow: hidden;
+    }
+
+
     .project::before {
       content: "";
 
@@ -707,43 +646,39 @@
       width: 180px;
       height: 180px;
 
-      right: -80px;
-      top: -80px;
-
       background: var(--purple);
 
       filter: blur(100px);
 
       opacity: 0.07;
+
+      right: -80px;
+      top: -80px;
+
+      pointer-events: none;
     }
+
 
     .project-icon {
-      margin-bottom: 12px;
-
       font-size: 35px;
+
+      margin-bottom: 15px;
     }
+
 
     .project h3 {
       margin-bottom: 8px;
     }
 
+
     .project p {
-      min-height: 66px;
-
-      margin-bottom: 18px;
-
       color: var(--muted);
 
       font-size: 14px;
+
+      margin-bottom: 20px;
     }
 
-    .project .tags {
-      display: flex;
-
-      flex-wrap: wrap;
-
-      gap: 7px;
-    }
 
     .project-link {
       display: inline-block;
@@ -758,9 +693,9 @@
     }
 
 
-    /* =========================================================
+    /* =========================
        STATS
-    ========================================================= */
+    ========================= */
 
     .stats {
       display: grid;
@@ -768,99 +703,118 @@
       grid-template-columns:
         repeat(2, 1fr);
 
-      gap: 18px;
+      gap: 15px;
     }
+
 
     .stats .card {
       display: flex;
 
-      align-items: center;
-
       justify-content: center;
 
-      min-height: 210px;
+      align-items: center;
+
+      min-width: 0;
+
+      overflow: hidden;
     }
+
 
     .stats img {
       width: 100%;
 
-      border-radius: 12px;
+      max-width: 100%;
+
+      border-radius: 14px;
     }
 
 
-    /* =========================================================
+    /* =========================
        STREAK
-    ========================================================= */
+    ========================= */
 
-    .streak-card {
+    .streak {
       text-align: center;
-    }
 
-    .streak-card img {
-      width:
-        min(850px, 100%);
+      overflow: hidden;
     }
 
 
-    /* =========================================================
+    .streak img {
+      width: 100%;
+
+      max-width: 850px;
+    }
+
+
+    /* =========================
        ACTIVITY
-    ========================================================= */
+    ========================= */
+
+    .activity {
+      overflow: hidden;
+    }
+
 
     .activity img {
       display: block;
 
       width: 100%;
 
-      border-radius: 13px;
+      border-radius: 15px;
     }
 
 
-    /* =========================================================
-       SNAKE
-    ========================================================= */
+    /* =========================
+       CONTRIBUTIONS
+    ========================= */
 
     .snake {
-      padding: 22px;
-    }
-
-    .snake-wrap {
-      width: 100%;
-
       overflow-x: auto;
 
-      scrollbar-width: thin;
+      text-align: center;
+
+      padding: 25px;
     }
+
 
     .snake img {
       display: block;
 
+      width: 100%;
+
       min-width: 700px;
 
-      width: 100%;
+      margin: auto;
     }
 
 
-    /* =========================================================
+    /* =========================
        LISTENING
-    ========================================================= */
+    ========================= */
 
     .listening {
       display: flex;
 
       align-items: center;
 
+      justify-content: center;
+
       gap: 16px;
     }
 
-    .music-icon {
-      flex: 0 0 52px;
 
+    .music-icon {
       width: 52px;
       height: 52px;
+
+      flex-shrink: 0;
 
       display: grid;
 
       place-items: center;
+
+      border-radius: 14px;
 
       background:
         linear-gradient(
@@ -869,33 +823,31 @@
           var(--cyan)
         );
 
-      border-radius: 14px;
-
       font-size: 24px;
     }
+
 
     .listening small {
       display: block;
 
-      margin-bottom: 3px;
-
       color: var(--muted);
+
+      font-size: 11px;
 
       text-transform: uppercase;
 
       letter-spacing: 1px;
-
-      font-size: 10px;
     }
+
 
     .listening strong {
       font-size: 16px;
     }
 
 
-    /* =========================================================
+    /* =========================
        SOCIALS
-    ========================================================= */
+    ========================= */
 
     .socials {
       display: flex;
@@ -907,21 +859,24 @@
       gap: 10px;
     }
 
+
     .social {
       padding: 11px 17px;
-
-      color: var(--muted);
 
       background:
         rgba(17, 24, 39, 0.6);
 
       border:
-        1px solid var(--border);
+        1px solid
+        var(--border);
 
       border-radius: 12px;
 
+      color: var(--muted);
+
       transition: 0.2s ease;
     }
+
 
     .social:hover {
       color: white;
@@ -932,107 +887,63 @@
     }
 
 
-    /* =========================================================
+    /* =========================
        FOOTER
-    ========================================================= */
+    ========================= */
 
     footer {
-      padding: 75px 0 30px;
+      text-align: center;
+
+      padding: 70px 0 30px;
 
       color: var(--muted);
-
-      text-align: center;
 
       font-size: 13px;
     }
 
-    .footer-logo {
-      margin-bottom: 10px;
 
+    footer .logo {
       color: var(--purple);
 
-      font-size: 26px;
+      font-size: 24px;
 
-      font-weight: 700;
-    }
-
-    .footer-links {
-      display: flex;
-
-      justify-content: center;
-
-      flex-wrap: wrap;
-
-      gap: 12px;
-
-      margin: 18px 0;
-    }
-
-    .footer-links a {
-      color: var(--muted);
-    }
-
-    .footer-links a:hover {
-      color: var(--purple);
+      margin-bottom: 12px;
     }
 
 
-    /* =========================================================
-       REVEAL ANIMATION
-    ========================================================= */
+    .footer-wave {
+      display: block;
 
-    .reveal {
-      opacity: 1;
+      width: 100%;
 
-      transform:
-        translateY(18px);
-
-      transition:
-        opacity 0.65s ease,
-        transform 0.65s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-
-      transform:
-        translateY(0);
+      margin-top: 50px;
     }
 
 
-    /* =========================================================
+    /* =========================
        MOBILE
-    ========================================================= */
+    ========================= */
 
     @media (max-width: 750px) {
 
       nav {
-        justify-content: flex-start;
-
         overflow-x: auto;
 
-        scrollbar-width: none;
+        justify-content: flex-start;
       }
 
-      nav::-webkit-scrollbar {
-        display: none;
-      }
 
       nav a {
         white-space: nowrap;
       }
 
+
       .hero {
-        min-height: 76vh;
+        min-height: 75vh;
 
-        padding-top: 70px;
+        padding-top: 60px;
       }
 
-      .hero h1 {
-        letter-spacing: -3px;
-
-        padding-bottom: 14px;
-      }
 
       .about-grid,
       .projects,
@@ -1040,41 +951,28 @@
         grid-template-columns: 1fr;
       }
 
-      .project p {
-        min-height: 0;
-      }
 
       section {
-        padding: 62px 0;
+        padding: 65px 0;
       }
 
-      .section-title {
-        font-size: 24px;
+
+      .snake img {
+        min-width: 650px;
       }
 
-      .card {
-        padding: 20px;
-      }
-    }
 
+      .fact {
+        flex-direction: column;
 
-    /* =========================================================
-       REDUCED MOTION
-    ========================================================= */
-
-    @media (prefers-reduced-motion: reduce) {
-
-      html {
-        scroll-behavior: auto;
+        gap: 3px;
       }
 
-      *,
-      *::before,
-      *::after {
-        animation: none !important;
 
-        transition: none !important;
+      .fact span:last-child {
+        text-align: left;
       }
+
     }
 
   </style>
@@ -1083,198 +981,493 @@
 
 <body>
 
-  <!-- =======================================================
-       BACKGROUND
-  ======================================================== -->
 
-  <div class="background" aria-hidden="true">
+<!-- =========================
+     BACKGROUND
+========================= -->
 
-    <div class="orb one"></div>
+<div class="background">
 
-    <div class="orb two"></div>
+  <div class="orb one"></div>
 
-    <div class="orb three"></div>
+  <div class="orb two"></div>
+
+  <div class="orb three"></div>
+
+</div>
+
+
+<!-- =========================
+     NAVIGATION
+========================= -->
+
+<nav>
+
+  <a href="#about">About</a>
+
+  <a href="#stack">Stack</a>
+
+  <a href="#projects">Projects</a>
+
+  <a href="#stats">Stats</a>
+
+  <a href="#activity">Activity</a>
+
+  <a href="#contact">Contact</a>
+
+</nav>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<header class="hero">
+
+  <div class="hero-content">
+
+    <div class="badge">
+
+      <span class="status-dot"></span>
+
+      currently building things
+
+    </div>
+
+
+    <!-- CAPSULE RENDER HEADER -->
+
+    <img
+      class="hero-header"
+      src="https://capsule-render.vercel.app/api?type=waving&color=0:7c3aed,50:22d3ee,100:34d399&height=180&section=header&text=%E2%9C%A6%20Shedeggsky&fontSize=52&fontColor=a78bfa&animation=fadeIn&fontAlignY=35"
+      width="100%"
+      alt="✦ Shedeggsky"
+    >
+
+
+    <p class="subtitle">
+
+      developer · maker · tech enjoyer · linux guy
+
+    </p>
+
+
+    <div class="buttons">
+
+      <a
+        class="button primary"
+        href="https://github.com/Shedeggsky"
+      >
+        View GitHub
+      </a>
+
+
+      <a
+        class="button"
+        href="#projects"
+      >
+        Explore Projects
+      </a>
+
+    </div>
 
   </div>
 
-
-  <!-- =======================================================
-       NAVIGATION
-  ======================================================== -->
-
-  <nav id="navbar">
-
-    <a href="#about">
-      About
-    </a>
-
-    <a href="#stack">
-      Stack
-    </a>
-
-    <a href="#projects">
-      Projects
-    </a>
-
-    <a href="#stats">
-      Stats
-    </a>
-
-    <a href="#activity">
-      Activity
-    </a>
-
-    <a href="#contact">
-      Contact
-    </a>
-
-  </nav>
+</header>
 
 
-  <!-- =======================================================
-       HERO
-  ======================================================== -->
-
-  <header class="hero">
-
-    <div class="hero-content">
-
-      <div class="badge">
-
-        <span class="status-dot"></span>
-
-        currently building things
-
-      </div>
+<main class="container">
 
 
-      <h1>
-        ✦ Shedeggsky
-      </h1>
+<!-- =========================
+     ABOUT
+========================= -->
+
+<section id="about">
+
+  <h2 class="section-title">
+
+    <span>01.</span>
+
+    About
+
+  </h2>
 
 
-      <p class="subtitle">
-        developer · maker · tech enjoyer · linux guy
-      </p>
+  <div class="about-grid">
 
 
-      <div
-        class="typing"
-        aria-live="polite"
-      >
+    <div class="card">
 
-        <span id="typing-text"></span>
+      <div class="terminal">
 
-        <span class="cursor">
-          ▋
-        </span>
+        <div class="terminal-head">
 
-      </div>
+          <i></i>
+          <i></i>
+          <i></i>
 
-
-      <div class="buttons">
-
-        <a
-          class="button primary"
-          href="https://github.com/Shedeggsky"
-          target="_blank"
-          rel="noopener"
-        >
-          View GitHub
-        </a>
+        </div>
 
 
-        <a
-          class="button"
-          href="#projects"
-        >
-          Explore Projects
-        </a>
+        <div class="terminal-body">
+
+          <div>
+
+            <span class="purple">
+              shedeggsky
+            </span>
+
+            @github:
+
+            <span class="cyan">
+              ~
+            </span>
+
+            $ whoami
+
+          </div>
+
+
+          <br>
+
+
+          <div class="green">
+
+            developer / tinkerer / Linux enjoyer
+
+          </div>
+
+
+          <br>
+
+
+          <div>
+            &gt; building random stuff
+          </div>
+
+          <div>
+            &gt; breaking things
+          </div>
+
+          <div>
+            &gt; fixing the things I broke
+          </div>
+
+          <div>
+            &gt; repeat
+          </div>
+
+
+          <br>
+
+
+          <div>
+
+            <span class="purple">
+              shedeggsky
+            </span>
+
+            @github:
+
+            <span class="cyan">
+              ~
+            </span>
+
+            $ _
+
+          </div>
+
+        </div>
 
       </div>
 
     </div>
 
-  </header>
+
+    <div class="card">
+
+      <div class="facts">
 
 
-  <!-- =======================================================
-       MAIN
-  ======================================================== -->
+        <div class="fact">
 
-  <main class="container">
+          <span>💻 Focus</span>
+
+          <span>Development</span>
+
+        </div>
 
 
-    <!-- =====================================================
-         ABOUT
-    ====================================================== -->
+        <div class="fact">
 
-    <section
-      id="about"
-      class="reveal"
+          <span>🐧 OS</span>
+
+          <span>Linux</span>
+
+        </div>
+
+
+        <div class="fact">
+
+          <span>🛠️ Hobby</span>
+
+          <span>Tinkering</span>
+
+        </div>
+
+
+        <div class="fact">
+
+          <span>🚀 Current</span>
+
+          <span>Android Gentoo</span>
+
+        </div>
+
+
+        <div class="fact">
+
+          <span>📍 Location</span>
+
+          <span>Philippines</span>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     STACK
+========================= -->
+
+<section id="stack">
+
+  <h2 class="section-title">
+
+    <span>02.</span>
+
+    Tech Stack
+
+  </h2>
+
+
+  <div class="card stack">
+
+
+    <img
+      class="stack-icons"
+      src="https://skillicons.dev/icons?i=js,ts,python,html,css,rust,nodejs,php,c,cpp,java,lua,bash,linux,bsd,kali,ubuntu,discord,git,github,githubactions,vscode,vim,androidstudio,sqlite,cmake,docker,vercel,cloudflare,nginx,qt,arduino,raspberrypi,blender&theme=dark&perline=9"
+      alt="Technology stack"
     >
 
-      <h2 class="section-title">
 
-        <span>
-          01.
+    <div class="stack-tags">
+
+      <span class="tag">
+        KISS Linux
+      </span>
+
+      <span class="tag">
+        Exherbo
+      </span>
+
+      <span class="tag">
+        NixOS
+      </span>
+
+      <span class="tag">
+        Termux
+      </span>
+
+      <span class="tag">
+        Android
+      </span>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- =========================
+     PROJECTS
+========================= -->
+
+<section id="projects">
+
+  <h2 class="section-title">
+
+    <span>03.</span>
+
+    Projects
+
+  </h2>
+
+
+  <div class="projects">
+
+
+    <div class="card project">
+
+      <div class="project-icon">
+        🐧
+      </div>
+
+
+      <h3>
+        Fedora on Android
+      </h3>
+
+
+      <p>
+        Running Fedora userspace on Android.
+        Because apparently Android wasn't Linux enough.
+      </p>
+
+
+      <div class="tags">
+
+        <span class="tag">
+          Linux
         </span>
 
-        About
+        <span class="tag">
+          Android
+        </span>
 
-      </h2>
+        <span class="tag">
+          Termux
+        </span>
 
-
-      <div class="about-grid">
-
-
-        <div class="card">
-
-          <div class="terminal">
+      </div>
 
 
-            <div class="terminal-head">
+      <a
+        class="project-link"
+        href="https://github.com/Shedeggsky/fedora-on-android"
+      >
+        View project →
+      </a>
 
-              <i></i>
-
-              <i></i>
-
-              <i></i>
-
-            </div>
-
-
-            <div class="terminal-body">
-
-              <div>
-
-                <span class="purple">
-                  shedeggsky
-                </span>
-
-                @github:
-
-                <span class="cyan">
-                  ~
-                </span>
-
-                $
-
-                whoami
-
-              </div>
+    </div>
 
 
-              <br>
+    <div class="card project">
+
+      <div class="project-icon">
+        ❄️
+      </div>
 
 
-              <div class="green">
-
-                developer /
-                tinkerer /
-                Linux enjoyer
-
-              </div>
+      <h3>
+        NixOS Android
+      </h3>
 
 
-   
+      <p>
+        NixOS userspace experiments running directly
+        in an Android environment.
+      </p>
+
+
+      <div class="tags">
+
+        <span class="tag">
+          NixOS
+        </span>
+
+        <span class="tag">
+          Android
+        </span>
+
+        <span class="tag">
+          Linux
+        </span>
+
+      </div>
+
+
+      <a
+        class="project-link"
+        href="https://github.com/Shedeggsky/nixos-android"
+      >
+        View project →
+      </a>
+
+    </div>
+
+
+    <div class="card project">
+
+      <div class="project-icon">
+        ⚙️
+      </div>
+
+
+      <h3>
+        Random Experiments
+      </h3>
+
+
+      <p>
+        Scripts, configs, experiments, weird ideas,
+        and things that probably started at 2 AM.
+      </p>
+
+
+      <div class="tags">
+
+        <span class="tag">
+          Python
+        </span>
+
+        <span class="tag">
+          Bash
+        </span>
+
+        <span class="tag">
+          Linux
+        </span>
+
+      </div>
+
+
+      <a
+        class="project-link"
+        href="https://github.com/Shedeggsky?tab=repositories"
+      >
+        Browse repositories →
+      </a>
+
+    </div>
+
+
+    <div class="card project">
+
+      <div class="project-icon">
+        📱
+      </div>
+
+
+      <h3>
+        Android Experiments
+      </h3>
+
+
+      <p>
+        Android customization, development,
+        Linux environments and device tinkering.
+      </p>
+
+
+      <
