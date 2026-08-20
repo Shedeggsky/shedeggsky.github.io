@@ -6,11 +6,16 @@
 
   <title>✦ Shedeggsky</title>
 
-  <meta name="description" content="Shedeggsky — developer, maker, linux enjoyer and professional tinkerer.">
+  <meta name="description" content="Shedeggsky — developer, maker, Linux enjoyer and professional tinkerer.">
   <meta name="theme-color" content="#7c3aed">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://skillicons.dev">
+  <link rel="dns-prefetch" href="https://github-stats-extended.vercel.app">
+  <link rel="dns-prefetch" href="https://streak-stats.demolab.com">
+  <link rel="dns-prefetch" href="https://github-readme-activity-graph.vercel.app">
+  <link rel="dns-prefetch" href="https://readme-typing-svg.demolab.com">
 
   <link
     href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap"
@@ -284,6 +289,8 @@
 
     section {
       padding: 90px 0;
+      content-visibility: auto;
+      contain-intrinsic-size: 1px 500px;
     }
 
     .section-title {
@@ -521,6 +528,36 @@
     }
 
     /* =========================
+       SOCIALS
+    ========================= */
+
+    .socials {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .social {
+      padding: 11px 17px;
+
+      background: rgba(17, 24, 39, 0.6);
+      border: 1px solid var(--border);
+
+      border-radius: 12px;
+
+      color: var(--muted);
+
+      transition: 0.2s ease;
+    }
+
+    .social:hover {
+      color: white;
+      border-color: var(--purple);
+      transform: translateY(-3px);
+    }
+
+    /* =========================
        FOOTER
     ========================= */
 
@@ -593,7 +630,7 @@
   <a href="#projects">Projects</a>
   <a href="#stats">Stats</a>
   <a href="#activity">Activity</a>
-  <a href="#contact">Contact</a>
+  <a href="#info">Info</a>
 </nav>
 
 
@@ -621,7 +658,6 @@
         <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=A78BFA&center=true&vCenter=true&width=435&lines=linux+guy;officialy+coupled+up%F0%9F%98%82%F0%9F%A4%A3%F0%9F%A4%A3;doomscrollin+till+new+ideas+pop+up;building+things+that+are+actually+fun+to+use" alt="Typing SVG" loading="eager" decoding="async" />
       </a>
     </div>
-
 
     <div class="buttons">
       <a class="button primary" href="https://github.com/Shedeggsky">
@@ -673,7 +709,7 @@
           <br>
 
           <div class="green">
-            developer / tinkerer / linux enjoyer
+            developer / tinkerer / Linux enjoyer
           </div>
 
           <br>
@@ -763,6 +799,8 @@
       <img
         src="https://skillicons.dev/icons?i=js,ts,python,html,css,rust,nodejs,php,c,cpp,java,lua,bash,linux,bsd,kali,ubuntu,discord,git,github,githubactions,vscode,vim,androidstudio,sqlite,cmake,docker,vercel,cloudflare,nginx,qt,arduino,raspberrypi,blender&theme=dark&perline=9"
         alt="Technology stack"
+        loading="lazy"
+        decoding="async"
       >
 
     </a>
@@ -925,6 +963,8 @@
       <img
         src="https://github-stats-extended.vercel.app/api?username=Shedeggsky&show_icons=true&hide_border=true&theme=transparent&title_color=a78bfa&text_color=94a3b8&icon_color=22d3ee&rank_icon=github"
         alt="GitHub statistics"
+        loading="lazy"
+        decoding="async"
       >
     </div>
 
@@ -932,6 +972,8 @@
       <img
         src="https://github-stats-extended.vercel.app/api/top-langs/?username=Shedeggsky&layout=compact&hide_border=true&theme=transparent&title_color=a78bfa&text_color=94a3b8"
         alt="Most used languages"
+        loading="lazy"
+        decoding="async"
       >
     </div>
 
@@ -956,6 +998,8 @@
       src="https://streak-stats.demolab.com/?user=Shedeggsky&theme=transparent&hide_border=true&currStreakLabel=A78BFA&sideLabels=94A3B8&ring=7C3AED&fire=22D3EE"
       alt="GitHub contribution streak"
       style="max-width:100%;"
+      loading="lazy"
+      decoding="async"
     >
 
   </div>
@@ -978,6 +1022,8 @@
     <img
       src="https://github-readme-activity-graph.vercel.app/graph?username=Shedeggsky&bg_color=0b0f19&color=a78bfa&line=34d399&point=60a5fa&area=true&hide_border=true"
       alt="GitHub activity graph"
+      loading="lazy"
+      decoding="async"
     >
 
   </div>
@@ -993,25 +1039,4 @@
 
   <h2 class="section-title">
     <span>07.</span> Contributions
-  </h2>
-
-  <div class="card snake">
-
-    <img
-      src="https://raw.githubusercontent.com/Shedeggsky/Shedeggsky/output/snake-dark.svg"
-      alt="GitHub contribution snake graph"
-    >
-
-  </div>
-
-</section>
-
-</main>
-
-<footer>
-  <div class="logo">✦</div>
-  <p>© Shedeggsky. All rights reserved.</p>
-</footer>
-
-</body>
-</html>
+  <
