@@ -1540,61 +1540,39 @@ async function unlock() {
     src.connect(anal);
     anal.connect(ctx.destination);
 
-    anal.fftSize = 32;
-
-    // Start music AFTER clicking login
-    try {
-    await m.play();
-} catch (err) {
-    console.error("Audio failed:", err);
-
-    const errorBox = document.createElement("div");
-
-    errorBox.innerText = "Audio failed.";
-
-    errorBox.style.position = "fixed";
-    errorBox.style.bottom = "20px";
-    errorBox.style.right = "20px";
-    errorBox.style.zIndex = "9999";
-    errorBox.style.padding = "12px 18px";
-    errorBox.style.background = "#1a0b2e";
-    errorBox.style.color = "#fca5a5";
-    errorBox.style.border = "1px solid #ef4444";
-    errorBox.style.borderRadius = "10px";
-    errorBox.style.fontFamily = "Fira Code, monospace";
-    errorBox.style.fontSize = "13px";
-    errorBox.style.boxShadow = "0 0 20px #ef444455";
-
-    document.body.appendChild(errorBox);
+<script>
+async function unlock() {
+    lock.style.opacity = "0";
 
     setTimeout(() => {
-        errorBox.remove();
-    }, 5000);
+        lock.remove();
+    }, 1000);
+
+    try {
+        await m.play();
+        console.log("Audio started!");
+    } catch (err) {
+        console.error("Audio failed:", err);
+
+        const errorBox = document.createElement("div");
+        errorBox.textContent = "Audio failed.";
+
+        errorBox.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+            padding: 12px 18px;
+            background: #1a0b2e;
+            color: #fca5a5;
+            border: 1px solid #ef4444;
+            border-radius: 10px;
+            font-family: monospace;
+        `;
+
+        document.body.appendChild(errorBox);
     }
-
-    const arr = new Uint8Array(anal.frequencyBinCount);
-    const cv = v.getContext("2d");
-
-    function draw() {
-        requestAnimationFrame(draw);
-
-        anal.getByteFrequencyData(arr);
-        cv.clearRect(0, 0, 50, 50);
-
-        for (let i = 0; i < arr.length; i++) {
-            cv.fillStyle = "#c084fc";
-            cv.fillRect(
-                i * 3,
-                50 - arr[i] / 5,
-                2,
-                arr[i] / 5
-            );
-        }
-    }
-
-    draw();
 }
-  
 </script>
 
   <div class="background">
