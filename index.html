@@ -1553,227 +1553,26 @@ stroke-linecap="round" stroke-linejoin="round">
 
 </button>
 <canvas id="v" width="260" height="70"
-style="position:fixed;bottom:20px;right:20px;z-index:998;pointer-events:none"></canvas>
-<script>
+style="position:fixed;bottom:20px;right:20px;z-index:998;pointer-events:none"></canvas> 
 
-updateClock();
-setInterval(updateClock, 1000);
-
-async function unlock() {
-    const lock = document.getElementById("lock");
-    const m = document.getElementById("m");
-    const v = document.getElementById("v");
-
-    if (!m) {
-        console.error("Audio element #m not found");
-        return;
-    }
-
-    // Unlock screen
-    if (lock) {
-        lock.style.opacity = "0";
-
-        setTimeout(() => {
-            lock.remove();
-        }, 1000);
-    }
-
-    try {
-        await m.play();
-
-        console.log("Audio started!");
-
-        const ctx = new (window.AudioContext || window.webkitAudioContext)();
-
-        if (ctx.state === "suspended") {
-            await ctx.resume();
-        }
-
-        const src = ctx.createMediaElementSource(m);
-        const anal = ctx.createAnalyser();
-
-        src.connect(anal);
-        anal.connect(ctx.destination);
-
-        anal.fftSize = 64;
-
-        const arr = new Uint8Array(anal.frequencyBinCount);
-
-        if (!v) return;
-
-        const cv = v.getContext("2d");
-
-        function draw() {
-            requestAnimationFrame(draw);
-
-            anal.getByteFrequencyData(arr);
-
-            cv.clearRect(0, 0, 260, 70);
-
-            const bars = 32;
-            const width = 5;
-            const gap = 3;
-
-            for (let i = 0; i < bars; i++) {
-                const index = Math.floor(i * arr.length / bars);
-                const value = arr[index] / 255;
-                const height = value * 65;
-
-                cv.fillStyle = "#c084fc";
-
-                cv.fillRect(
-                    i * (width + gap),
-                    70 - height,
-                    width,
-                    height
-                );
-            }
-        }
-
-        draw();
-
-
-    } catch (err) {
-
-        console.error("Audio failed:", err);
-
-        const errorBox =
-            document.createElement("div");
-async function unlock() {
-    lock.style.opacity = "0";
-
-    setTimeout(() => {
-        lock.remove();
-    }, 1000);
-
-    try {
-        // Create audio context FIRST
-        const ctx = new (window.AudioContext || window.webkitAudioContext)();
-
-        if (ctx.state === "suspended") {
-            await ctx.resume();
-        }
-
-        // Connect audio to visualizer
-        const src = ctx.createMediaElementSource(m);
-        const anal = ctx.createAnalyser();
-
-        src.connect(anal);
-        anal.connect(ctx.destination);
-
-        anal.fftSize = 64;
-
-        // Start music
-        await m.play();
-
-        console.log("Audio started!");
-
-        // Visualizer
-        const arr = new Uint8Array(anal.frequencyBinCount);
-        const cv = v.getContext("2d");
-
-        function draw() {
-            requestAnimationFrame(draw);
-
-            anal.getByteFrequencyData(arr);
-
-            cv.clearRect(0, 0, 260, 70);
-
-            const bars = 32;
-            const width = 5;
-            const gap = 3;
-
-            for (let i = 0; i < bars; i++) {
-                const index = Math.floor(i * arr.length / bars);
-                const value = arr[index] / 255;
-                const height = value * 65;
-
-                cv.fillStyle = "#c084fc";
-
-                cv.fillRect(
-                    i * (width + gap),
-                    70 - height,
-                    width,
-                    height
-                );
-            }
-        }
-
-        draw();
-
-    } catch (err) {
-        console.error("Audio failed:", err);
-
-        const errorBox = document.createElement("div");
-
-        errorBox.innerText = "Audio failed.";
-
-        errorBox.style.cssText = `
-            position:fixed;
-            bottom:20px;
-            right:20px;
-            z-index:9999;
-            padding:12px 18px;
-            background:#1a0b2e;
-            color:#fca5a5;
-            border:1px solid #ef4444;
-            border-radius:10px;
-            font-family:monospace;
-        `;
-
-        document.body.appendChild(errorBox);
-
-async function unlock() {
-    const lock = document.getElementById("lock");
-
-    // Hide login screen
-    if (lock) {
-        lock.style.opacity = "0";
-
-        setTimeout(() => {
-            lock.remove();
-        }, 1000);
-    }
-
-    // Start audio
-    const audio = document.getElementById("m");
-
-    if (audio) {
-        try {
-            await audio.play();
-            console.log("Audio started 🔥");
-        } catch (err) {
-            console.error("Audio failed:", err);
-        }
-    }
-}
-</script>
 <script>
 const clock = document.getElementById("c");
 const date = document.getElementById("d");
 
 function updateClock() {
     const now = new Date();
+    const locale = navigator.language || "en-US";
 
-    clock.textContent = now.toLocaleTimeString("en-PH", {
+    clock.textContent = now.toLocaleTimeString(locale, {
         hour: "2-digit",
-        minute: "2-digit",
-        hour12: true
+        minute: "2-digit"
     });
 
-    date.textContent = now.toLocaleDateString("en-PH", {
+    date.textContent = now.toLocaleDateString(locale, {
         weekday: "long",
         month: "long",
         day: "numeric"
     });
-}
-
-updateClock();
-setInterval(updateClock, 1000);
-</script>
-<script>
-function testLogin() {
-    alert("LOGIN BUTTON WORKS 🔥");
 }
 </script>
   
