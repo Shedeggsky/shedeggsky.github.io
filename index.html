@@ -1509,49 +1509,210 @@
 
 <body>
 <div id="lock" style="position:fixed;inset:0;background:url('https://raw.githubusercontent.com/Shedeggsky/shedeggsky.github.io/main/assets/images/wallpaper.png') center/cover;display:flex;align-items:center;justify-content:center;transition:1s;z-index:999">
-<div style="background:#1a0b2e88;padding:30px;border-radius:16px;backdrop-filter:blur(10px);color:#fff;text-align:center;width:280px">
-<img src="https://raw.githubusercontent.com/Shedeggsky/shedeggsky.github.io/main/assets/images/pfp.png" style="width:70px;height:70px;border-radius:50%;object-fit:cover;margin-bottom:10px">
-<div style="font-size:12px;color:#d8b4fe">localhost@user</div>
-<div style="font-size:10px;color:#e879f9;margin-bottom:5px">Shluzov - Её парень</div>
-<h1 id="c" style="margin:10px 0;font-size:32px"></h1>
-<div id="d" style="font-size:12px;margin-bottom:15px"></div>
-<button onclick="unlock()" style="width:100%;padding:10px;border-radius:20px;border:none;background:#7e22ce;color:#fff;cursor:pointer">log in :o</button>
-</div></div>
+
+<div style="background:#1a0b2ecc;padding:30px;border-radius:18px;backdrop-filter:blur(12px);color:#fff;text-align:center;width:280px">
+
+<img src="https://raw.githubusercontent.com/Shedeggsky/shedeggsky.github.io/main/assets/images/pfp.png"
+style="display:block;width:70px;height:70px;border-radius:50%;object-fit:cover;margin:0 auto 12px">
+
+<div style="font-size:14px;font-weight:bold;color:#fff">
+localhost@user
+</div>
+
+<div style="font-size:10px;color:#e879f9;margin-top:4px">
+Shluzov - Её парень
+</div>
+
+<div id="c" style="margin-top:18px;font-size:52px;line-height:1;font-weight:700;letter-spacing:-2px;color:#fff">
+00:00
+</div>
+
+<div id="d" style="margin-top:10px;margin-bottom:22px;font-size:13px;color:#d8b4fe">
+Loading...
+</div>
+
+<button onclick="unlock()" style="width:100%;padding:11px;border-radius:20px;border:none;background:#7e22ce;color:#fff;cursor:pointer;font-size:14px">
+log in :o
+</button>
+
+</div>
+</div>
 <audio id="m" src="https://raw.githubusercontent.com/Shedeggsky/shedeggsky.github.io/main/assets/audio/menu.mp3" loop></audio>
-<canvas id="v" style="position:fixed;bottom:10px;right:10px;z-index:998"></canvas>
+<button id="mute-btn" onclick="toggleMute()" aria-label="Mute"
+style="position:fixed;top:20px;right:20px;width:42px;height:42px;z-index:1000;border:1px solid #ffffff22;border-radius:12px;background:#1a0b2ecc;backdrop-filter:blur(10px);cursor:pointer;display:flex;align-items:center;justify-content:center">
+
+<svg id="mute-icon" width="20" height="20" viewBox="0 0 24 24"
+fill="none" stroke="#d8b4fe" stroke-width="2"
+stroke-linecap="round" stroke-linejoin="round">
+
+<path d="M11 5L6 9H2v6h4l5 4V5z"/>
+<path d="M19 9a5 5 0 0 1 0 6"/>
+<path d="M22 7a9 9 0 0 1 0 10"/>
+
+</svg>
+
+</button>
+<canvas id="v" width="260" height="70"
+style="position:fixed;bottom:20px;right:20px;z-index:998;pointer-events:none"></canvas>
 <script>
+
+setInterval(() => {
+    let n = new Date();
+
+    c.innerText = n.toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit"
+    });
+
+    d.innerText = n.toLocaleDateString([], {
+        weekday: "long",
+        month: "long",
+        day: "numeric"
+    });
+
+}, 1000);
+
+
 async function unlock() {
+
     lock.style.opacity = "0";
 
     setTimeout(() => {
         lock.remove();
     }, 1000);
 
+
     try {
+
         await m.play();
+
         console.log("Audio started!");
+
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+
+        if (ctx.state === "suspended") {
+            await ctx.resume();
+        }
+
+        const src = ctx.createMediaElementSource(m);
+
+        const anal = ctx.createAnalyser();
+
+        src.connect(anal);
+        anal.connect(ctx.destination);
+
+        anal.fftSize = 64;
+
+
+        const arr = new Uint8Array(anal.frequencyBinCount);
+
+        const cv = v.getContext("2d");
+
+
+        function draw() {
+
+            requestAnimationFrame(draw);
+
+            anal.getByteFrequencyData(arr);
+
+            cv.clearRect(0, 0, 260, 70);
+
+
+            const bars = 32;
+            const width = 5;
+            const gap = 3;
+
+
+            for (let i = 0; i < bars; i++) {
+
+                const index =
+                    Math.floor(i * arr.length / bars);
+
+                const value =
+                    arr[index] / 255;
+
+                const height =
+                    value * 65;
+
+
+                cv.fillStyle = "#c084fc";
+
+                cv.fillRect(
+                    i * (width + gap),
+                    70 - height,
+                    width,
+                    height
+                );
+
+            }
+
+        }
+
+        draw();
+
+
     } catch (err) {
+
         console.error("Audio failed:", err);
 
-        const errorBox = document.createElement("div");
-        errorBox.textContent = "Audio failed.";
+        const errorBox =
+            document.createElement("div");
+
+        errorBox.innerText = "Audio failed.";
 
         errorBox.style.cssText = `
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 9999;
-            padding: 12px 18px;
-            background: #1a0b2e;
-            color: #fca5a5;
-            border: 1px solid #ef4444;
-            border-radius: 10px;
-            font-family: monospace;
+            position:fixed;
+            bottom:20px;
+            right:20px;
+            z-index:9999;
+            padding:12px 18px;
+            background:#1a0b2e;
+            color:#fca5a5;
+            border:1px solid #ef4444;
+            border-radius:10px;
+            font-family:monospace;
         `;
 
         document.body.appendChild(errorBox);
+
+
+        setTimeout(() => {
+            errorBox.remove();
+        }, 10000);
+
     }
+
 }
+
+
+function toggleMute() {
+
+    m.muted = !m.muted;
+
+    const icon =
+        document.getElementById("mute-icon");
+
+
+    if (m.muted) {
+
+        icon.innerHTML = `
+            <path d="M11 5L6 9H2v6h4l5 4V5z"/>
+            <line x1="23" y1="9" x2="17" y2="15"/>
+            <line x1="17" y1="9" x2="23" y2="15"/>
+        `;
+
+    } else {
+
+        icon.innerHTML = `
+            <path d="M11 5L6 9H2v6h4l5 4V5z"/>
+            <path d="M19 9a5 5 0 0 1 0 6"/>
+            <path d="M22 7a9 9 0 0 1 0 10"/>
+        `;
+
+    }
+
+}
+
 </script>
 
   <div class="background">
