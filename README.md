@@ -3,4 +3,4 @@
 [![pages-build-deployment](https://github.com/Shedeggsky/shedeggsky.github.io/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/Shedeggsky/shedeggsky.github.io/actions/workflows/pages/pages-build-deployment)
 
 Basically a website for me (links ig)
-shedeggsky.github.io
+<a href="https://shedeggsky.github.io">Website</a>
