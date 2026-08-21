@@ -1782,6 +1782,29 @@ function toggleMute() {
 }
 
 </script>
+<script>
+const clock = document.getElementById("c");
+const date = document.getElementById("d");
+
+function updateClock() {
+    const now = new Date();
+
+    clock.textContent = now.toLocaleTimeString("en-PH", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true
+    });
+
+    date.textContent = now.toLocaleDateString("en-PH", {
+        weekday: "long",
+        month: "long",
+        day: "numeric"
+    });
+}
+
+updateClock();
+setInterval(updateClock, 1000);
+</script>
 
   <div class="background">
 
