@@ -1520,27 +1520,6 @@
 <audio id="m" src="https://raw.githubusercontent.com/Shedeggsky/shedeggsky.github.io/main/assets/audio/menu.mp3" loop></audio>
 <canvas id="v" style="position:fixed;bottom:10px;right:10px;z-index:998"></canvas>
 <script>
-setInterval(()=>{let n=new Date();c.innerText=n.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});d.innerText=n.toDateString()},1000);
-async function unlock() {
-    lock.style.opacity = "0";
-
-    setTimeout(() => {
-        lock.remove();
-    }, 1000);
-
-    const ctx = new (window.AudioContext || window.webkitAudioContext)();
-
-    if (ctx.state === "suspended") {
-        await ctx.resume();
-    }
-
-    const src = ctx.createMediaElementSource(m);
-    const anal = ctx.createAnalyser();
-
-    src.connect(anal);
-    anal.connect(ctx.destination);
-
-<script>
 async function unlock() {
     lock.style.opacity = "0";
 
