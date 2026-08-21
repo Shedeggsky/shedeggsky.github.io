@@ -1723,60 +1723,30 @@ async function unlock() {
 
         document.body.appendChild(errorBox);
 
+async function unlock() {
+    const lock = document.getElementById("lock");
+
+    // Hide login screen
+    if (lock) {
+        lock.style.opacity = "0";
+
         setTimeout(() => {
-            errorBox.remove();
-        }, 10000);
+            lock.remove();
+        }, 1000);
+    }
+
+    // Start audio
+    const audio = document.getElementById("m");
+
+    if (audio) {
+        try {
+            await audio.play();
+            console.log("Audio started 🔥");
+        } catch (err) {
+            console.error("Audio failed:", err);
+        }
     }
 }
-
-const c = document.getElementById("c");
-const d = document.getElementById("d");
-
-function updateClock() {
-    const n = new Date();
-
-    if (c) {
-        c.innerText = n.toLocaleTimeString([], {
-            hour: "2-digit",
-            minute: "2-digit"
-        });
-    }
-
-    if (d) {
-        d.innerText = n.toLocaleDateString([], {
-            weekday: "long",
-            month: "long",
-            day: "numeric"
-        });
-    }
-}
-
-updateClock();
-setInterval(updateClock, 1000);
-      
-function toggleMute() {
-    if (!m) return;
-
-    m.muted = !m.muted;
-
-    const icon = document.getElementById("mute-icon");
-    if (!icon) return;
-
-    if (m.muted) {
-        icon.innerHTML = `
-            <path d="M11 5L6 9H2v6h4l5 4V5z"/>
-            <line x1="23" y1="9" x2="17" y2="15"/>
-            <line x1="17" y1="9" x2="23" y2="15"/>
-        `;
-    } else {
-        icon.innerHTML = `
-            <path d="M11 5L6 9H2v6h4l5 4V5z"/>
-            <path d="M19 9a5 5 0 0 1 0 6"/>
-            <path d="M22 7a9 9 0 0 1 0 10"/>
-        `;
-    }
-}
-
 </script>
 <script>
 const clock = document.getElementById("c");
