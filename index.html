@@ -1556,24 +1556,6 @@ stroke-linecap="round" stroke-linejoin="round">
 style="position:fixed;bottom:20px;right:20px;z-index:998;pointer-events:none"></canvas>
 <script>
 
-const c = document.getElementById("c");
-const d = document.getElementById("d");
-
-function updateClock() {
-    const n = new Date();
-
-    c.innerText = n.toLocaleTimeString([], {
-        hour: "2-digit",
-        minute: "2-digit"
-    });
-
-    d.innerText = n.toLocaleDateString([], {
-        weekday: "long",
-        month: "long",
-        day: "numeric"
-    });
-}
-
 updateClock();
 setInterval(updateClock, 1000);
 
@@ -1751,7 +1733,31 @@ async function unlock() {
     }
 }
 
+const c = document.getElementById("c");
+const d = document.getElementById("d");
 
+function updateClock() {
+    const n = new Date();
+
+    if (c) {
+        c.innerText = n.toLocaleTimeString([], {
+            hour: "2-digit",
+            minute: "2-digit"
+        });
+    }
+
+    if (d) {
+        d.innerText = n.toLocaleDateString([], {
+            weekday: "long",
+            month: "long",
+            day: "numeric"
+        });
+    }
+}
+
+updateClock();
+setInterval(updateClock, 1000);
+      
 function toggleMute() {
     if (!m) return;
 
