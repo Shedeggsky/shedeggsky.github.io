@@ -1537,7 +1537,7 @@ log in :o
 
 </div>
 </div>
-<audio id="m" src="https://raw.githubusercontent.com/Shedeggsky/shedeggsky.github.io/main/assets/audio/menu.mp3" loop></audio>
+<audio id="m" src="/assets/audio/menu.mp3" loop preload="auto"></audio>
 <button id="mute-btn" onclick="toggleMute()" aria-label="Mute"
 style="position:fixed;top:20px;right:20px;width:42px;height:42px;z-index:1000;border:1px solid #ffffff22;border-radius:12px;background:#1a0b2ecc;backdrop-filter:blur(10px);cursor:pointer;display:flex;align-items:center;justify-content:center">
 
@@ -1657,6 +1657,72 @@ async function unlock() {
 
         const errorBox =
             document.createElement("div");
+async function unlock() {
+    lock.style.opacity = "0";
+
+    setTimeout(() => {
+        lock.remove();
+    }, 1000);
+
+    try {
+        // Create audio context FIRST
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+
+        if (ctx.state === "suspended") {
+            await ctx.resume();
+        }
+
+        // Connect audio to visualizer
+        const src = ctx.createMediaElementSource(m);
+        const anal = ctx.createAnalyser();
+
+        src.connect(anal);
+        anal.connect(ctx.destination);
+
+        anal.fftSize = 64;
+
+        // Start music
+        await m.play();
+
+        console.log("Audio started!");
+
+        // Visualizer
+        const arr = new Uint8Array(anal.frequencyBinCount);
+        const cv = v.getContext("2d");
+
+        function draw() {
+            requestAnimationFrame(draw);
+
+            anal.getByteFrequencyData(arr);
+
+            cv.clearRect(0, 0, 260, 70);
+
+            const bars = 32;
+            const width = 5;
+            const gap = 3;
+
+            for (let i = 0; i < bars; i++) {
+                const index = Math.floor(i * arr.length / bars);
+                const value = arr[index] / 255;
+                const height = value * 65;
+
+                cv.fillStyle = "#c084fc";
+
+                cv.fillRect(
+                    i * (width + gap),
+                    70 - height,
+                    width,
+                    height
+                );
+            }
+        }
+
+        draw();
+
+    } catch (err) {
+        console.error("Audio failed:", err);
+
+        const errorBox = document.createElement("div");
 
         errorBox.innerText = "Audio failed.";
 
@@ -1675,13 +1741,10 @@ async function unlock() {
 
         document.body.appendChild(errorBox);
 
-
         setTimeout(() => {
             errorBox.remove();
         }, 10000);
-
     }
-
 }
 
 
