@@ -1560,16 +1560,25 @@ updateClock();
 setInterval(updateClock, 1000);
 
 async function unlock() {
+    const lock = document.getElementById("lock");
+    const m = document.getElementById("m");
+    const v = document.getElementById("v");
 
-    lock.style.opacity = "0";
+    if (!m) {
+        console.error("Audio element #m not found");
+        return;
+    }
 
-    setTimeout(() => {
-        lock.remove();
-    }, 1000);
+    // Unlock screen
+    if (lock) {
+        lock.style.opacity = "0";
 
+        setTimeout(() => {
+            lock.remove();
+        }, 1000);
+    }
 
     try {
-
         await m.play();
 
         console.log("Audio started!");
@@ -1581,7 +1590,6 @@ async function unlock() {
         }
 
         const src = ctx.createMediaElementSource(m);
-
         const anal = ctx.createAnalyser();
 
         src.connect(anal);
@@ -1589,37 +1597,27 @@ async function unlock() {
 
         anal.fftSize = 64;
 
-
         const arr = new Uint8Array(anal.frequencyBinCount);
+
+        if (!v) return;
 
         const cv = v.getContext("2d");
 
-
         function draw() {
-
             requestAnimationFrame(draw);
 
             anal.getByteFrequencyData(arr);
 
             cv.clearRect(0, 0, 260, 70);
 
-
             const bars = 32;
             const width = 5;
             const gap = 3;
 
-
             for (let i = 0; i < bars; i++) {
-
-                const index =
-                    Math.floor(i * arr.length / bars);
-
-                const value =
-                    arr[index] / 255;
-
-                const height =
-                    value * 65;
-
+                const index = Math.floor(i * arr.length / bars);
+                const value = arr[index] / 255;
+                const height = value * 65;
 
                 cv.fillStyle = "#c084fc";
 
@@ -1629,9 +1627,7 @@ async function unlock() {
                     width,
                     height
                 );
-
             }
-
         }
 
         draw();
