@@ -1556,8 +1556,11 @@ stroke-linecap="round" stroke-linejoin="round">
 style="position:fixed;bottom:20px;right:20px;z-index:998;pointer-events:none"></canvas>
 <script>
 
-setInterval(() => {
-    let n = new Date();
+const c = document.getElementById("c");
+const d = document.getElementById("d");
+
+function updateClock() {
+    const n = new Date();
 
     c.innerText = n.toLocaleTimeString([], {
         hour: "2-digit",
@@ -1569,9 +1572,10 @@ setInterval(() => {
         month: "long",
         day: "numeric"
     });
+}
 
-}, 1000);
-
+updateClock();
+setInterval(updateClock, 1000);
 
 async function unlock() {
 
@@ -1749,31 +1753,26 @@ async function unlock() {
 
 
 function toggleMute() {
+    if (!m) return;
 
     m.muted = !m.muted;
 
-    const icon =
-        document.getElementById("mute-icon");
-
+    const icon = document.getElementById("mute-icon");
+    if (!icon) return;
 
     if (m.muted) {
-
         icon.innerHTML = `
             <path d="M11 5L6 9H2v6h4l5 4V5z"/>
             <line x1="23" y1="9" x2="17" y2="15"/>
             <line x1="17" y1="9" x2="23" y2="15"/>
         `;
-
     } else {
-
         icon.innerHTML = `
             <path d="M11 5L6 9H2v6h4l5 4V5z"/>
             <path d="M19 9a5 5 0 0 1 0 6"/>
             <path d="M22 7a9 9 0 0 1 0 10"/>
         `;
-
     }
-
 }
 
 </script>
