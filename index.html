@@ -1508,59 +1508,167 @@
 </head>
 
 <body>
-<div id="lock" style="position:fixed;inset:0;background:url('https://raw.githubusercontent.com/Shedeggsky/shedeggsky.github.io/main/assets/images/wallpaper.png') center/cover;display:flex;align-items:center;justify-content:center;transition:1s;z-index:999">
 
-<div style="background:#1a0b2ecc;padding:30px;border-radius:18px;backdrop-filter:blur(12px);color:#fff;text-align:center;width:280px">
+<div id="lock" style="
+    position:fixed;
+    inset:0;
+    background:url('https://raw.githubusercontent.com/Shedeggsky/shedeggsky.github.io/main/assets/images/wallpaper.png') center/cover;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition:opacity 1s;
+    z-index:999;
+">
 
-<img src="https://raw.githubusercontent.com/Shedeggsky/shedeggsky.github.io/main/assets/images/pfp.png"
-style="display:block;width:70px;height:70px;border-radius:50%;object-fit:cover;margin:0 auto 12px">
+    <div style="
+        background:#1a0b2ecc;
+        padding:30px;
+        border-radius:18px;
+        backdrop-filter:blur(12px);
+        color:#fff;
+        text-align:center;
+        width:280px;
+    ">
 
-<div style="font-size:14px;font-weight:bold;color:#fff">
-localhost@user
+        <img
+            src="https://raw.githubusercontent.com/Shedeggsky/shedeggsky.github.io/main/assets/images/pfp.png"
+            style="
+                display:block;
+                width:70px;
+                height:70px;
+                border-radius:50%;
+                object-fit:cover;
+                margin:0 auto 12px;
+            "
+        >
+
+        <div style="font-size:14px;font-weight:bold;color:#fff">
+            localhost@user
+        </div>
+
+        <div style="font-size:10px;color:#e879f9;margin-top:4px">
+            Shluzov - Её парень
+        </div>
+
+        <div id="c" style="
+            margin-top:18px;
+            font-size:52px;
+            line-height:1;
+            font-weight:700;
+            letter-spacing:-2px;
+            color:#fff;
+        ">
+            --:--
+        </div>
+
+        <div id="d" style="
+            margin-top:10px;
+            margin-bottom:22px;
+            font-size:13px;
+            color:#d8b4fe;
+        ">
+            Loading...
+        </div>
+
+        <button
+            id="login-btn"
+            style="
+                width:100%;
+                padding:11px;
+                border-radius:20px;
+                border:none;
+                background:#7e22ce;
+                color:#fff;
+                cursor:pointer;
+                font-size:14px;
+            "
+        >
+            log in :o
+        </button>
+
+    </div>
 </div>
 
-<div style="font-size:10px;color:#e879f9;margin-top:4px">
-Shluzov - Её парень
-</div>
 
-<div id="c" style="margin-top:18px;font-size:52px;line-height:1;font-weight:700;letter-spacing:-2px;color:#fff">
-00:00
-</div>
+<!-- AUDIO -->
 
-<div id="d" style="margin-top:10px;margin-bottom:22px;font-size:13px;color:#d8b4fe">
-Loading...
-</div>
+<audio
+    id="m"
+    src="/assets/audio/menu.mp3"
+    loop
+    preload="auto"
+></audio>
 
-<button onclick="testLogin()" style="width:100%;padding:11px;border-radius:20px;border:none;background:#7e22ce;color:#fff;cursor:pointer;font-size:14px">
-    log in :o
+
+<!-- MUTE BUTTON -->
+
+<button
+    id="mute-btn"
+    aria-label="Mute"
+    style="
+        position:fixed;
+        top:20px;
+        right:20px;
+        width:42px;
+        height:42px;
+        z-index:1000;
+        border:1px solid #ffffff22;
+        border-radius:12px;
+        background:#1a0b2ecc;
+        backdrop-filter:blur(10px);
+        cursor:pointer;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+    "
+>
+
+    <svg
+        id="mute-icon"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#d8b4fe"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+    >
+
+        <path d="M11 5L6 9H2v6h4l5 4V5z"/>
+        <path d="M19 9a5 5 0 0 1 0 6"/>
+        <path d="M22 7a9 9 0 0 1 0 10"/>
+
+    </svg>
+
 </button>
 
-</div>
-</div>
-<audio id="m" src="/assets/audio/menu.mp3" loop preload="auto"></audio>
-<button id="mute-btn" onclick="toggleMute()" aria-label="Mute"
-style="position:fixed;top:20px;right:20px;width:42px;height:42px;z-index:1000;border:1px solid #ffffff22;border-radius:12px;background:#1a0b2ecc;backdrop-filter:blur(10px);cursor:pointer;display:flex;align-items:center;justify-content:center">
 
-<svg id="mute-icon" width="20" height="20" viewBox="0 0 24 24"
-fill="none" stroke="#d8b4fe" stroke-width="2"
-stroke-linecap="round" stroke-linejoin="round">
-
-<path d="M11 5L6 9H2v6h4l5 4V5z"/>
-<path d="M19 9a5 5 0 0 1 0 6"/>
-<path d="M22 7a9 9 0 0 1 0 10"/>
-
-</svg>
-
-</button>
-<canvas id="v" width="260" height="70"
-style="position:fixed;bottom:20px;right:20px;z-index:998;pointer-events:none"></canvas> 
+<!-- EVERYTHING JAVASCRIPT IS HERE -->
 
 <script>
+
 const clock = document.getElementById("c");
 const date = document.getElementById("d");
 
+const lock = document.getElementById("lock");
+const loginButton = document.getElementById("login-btn");
+
+const audio = document.getElementById("m");
+
+const muteButton = document.getElementById("mute-btn");
+const muteIcon = document.getElementById("mute-icon");
+
+
+
+/* =========================
+   CLOCK
+========================= */
+
 function updateClock() {
+
     const now = new Date();
+
     const locale = navigator.language || "en-US";
 
     clock.textContent = now.toLocaleTimeString(locale, {
@@ -1573,20 +1681,103 @@ function updateClock() {
         month: "long",
         day: "numeric"
     });
+
 }
+
+updateClock();
+
+setInterval(updateClock, 1000);
+
+
+
+/* =========================
+   LOGIN
+========================= */
+
+loginButton.addEventListener("click", async function () {
+
+    try {
+
+        await audio.play();
+
+    } catch (error) {
+
+        console.log("Audio could not start:", error);
+
+    }
+
+    lock.style.opacity = "0";
+
+    setTimeout(function () {
+
+        lock.style.display = "none";
+
+    }, 1000);
+
+});
+
+
+
+/* =========================
+   MUTE
+========================= */
+
+muteButton.addEventListener("click", function () {
+
+    audio.muted = !audio.muted;
+
+    if (audio.muted) {
+
+        muteIcon.innerHTML = `
+            <path d="M11 5L6 9H2v6h4l5 4V5z"/>
+            <line x1="23" y1="9" x2="17" y2="15"/>
+            <line x1="17" y1="9" x2="23" y2="15"/>
+        `;
+
+    } else {
+
+        muteIcon.innerHTML = `
+            <path d="M11 5L6 9H2v6h4l5 4V5z"/>
+            <path d="M19 9a5 5 0 0 1 0 6"/>
+            <path d="M22 7a9 9 0 0 1 0 10"/>
+        `;
+
+    }
+
+});
+
 </script>
+
+</body>
+
+<div style="
+    position:fixed;
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    background:#7e22ce;
+    filter:blur(80px);
+    opacity:.35;
+    top:10%;
+    left:8%;
+    pointer-events:none;
+    z-index:-1;
+"></div>
+
+<div style="
+    position:fixed;
+    width:220px;
+    height:220px;
+    border-radius:50%;
+    background:#c026d3;
+    filter:blur(90px);
+    opacity:.25;
+    bottom:5%;
+    right:8%;
+    pointer-events:none;
+    z-index:-1;
+"></div>
   
-  <div class="background">
-
-    <div class="orb one"></div>
-
-    <div class="orb two"></div>
-
-    <div class="orb three"></div>
-
-  </div>
-
-
   <nav>
 
     <a href="#about">
