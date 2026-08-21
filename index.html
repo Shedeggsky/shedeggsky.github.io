@@ -974,7 +974,8 @@
     }
 
 
-    .snake-card {
+    .snake-card,
+    .streak-card {
       text-align:
         center;
 
@@ -983,7 +984,8 @@
     }
 
 
-    .snake-card img {
+    .snake-card img,
+    .streak-card img {
       width:
         100%;
 
@@ -1053,6 +1055,9 @@
 
 
     .record {
+      position:
+        relative;
+
       width:
         135px;
 
@@ -1095,32 +1100,44 @@
     }
 
 
-    .record::after {
-      content:
-        "";
-
-      position:
-        absolute;
-
+    .record-center {
       width:
-        22px;
+        100%;
 
       height:
-        22px;
+        100%;
+
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
 
       border-radius:
         50%;
 
       background:
-        var(--bg);
+        linear-gradient(
+          145deg,
+          rgba(124, 58, 237, 0.45),
+          rgba(34, 211, 238, 0.22)
+        );
 
-      border:
-        3px solid
-        var(--purple);
+      color:
+        var(--text);
 
-      transform:
-        translate(-50%, -50%);
+      font-size:
+        54px;
+
+      text-shadow:
+        0 0 18px rgba(167, 139, 250, 0.8);
     }
+
+
+
 
 
     @keyframes spin {
@@ -1890,25 +1907,25 @@
           <div class="project-icon">⚙️</div>
 
           <h3>
-            Random Experiments
+            Gentoo Android
           </h3>
 
           <p>
-            Scripts, configs, experiments, weird ideas,
-            and things that probably started at 2 AM.
+            Gentoo userspace running on Android.
+            Because compiling everything from source wasn't punishing enough already.
           </p>
 
           <div class="tags">
-            <span class="tag">Python</span>
-            <span class="tag">Bash</span>
-            <span class="tag">Linux</span>
+            <span class="tag">Gentoo</span>
+            <span class="tag">Android</span>
+            <span class="tag">Termux</span>
           </div>
 
           <a
             class="project-link"
-            href="https://github.com/Shedeggsky?tab=repositories"
+            href="https://github.com/Shedeggsky/gentoo-android"
           >
-            Browse repositories →
+            View project →
           </a>
 
         </div>
@@ -2001,14 +2018,12 @@
 
 
       <div
-        class="card"
-        style="text-align:center;"
+        class="card streak-card"
       >
 
         <img
           src="https://streak-stats.demolab.com/?user=Shedeggsky&theme=transparent&hide_border=true&currStreakLabel=A78BFA&sideLabels=94A3B8&ring=7C3AED&fire=22D3EE"
           alt="GitHub contribution streak"
-          style="max-width:100%;"
           loading="lazy"
           decoding="async"
         >
@@ -2028,7 +2043,7 @@
       </h2>
 
 
-      <div class="music-card card">
+      <div class="music-widget card">
 
 
         <div class="music-now">
@@ -2036,11 +2051,7 @@
 
           <div class="record">
 
-            <div class="record-center">
-
-              <span>♪</span>
-
-            </div>
+            <img src="data:image/jpeg;base64,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
 
           </div>
 
@@ -2051,11 +2062,11 @@
               ♪ SoundCloud Playlist
             </span>
 
-            <h3>
+            <h3 class="music-title">
               Shedeggsky
             </h3>
 
-            <p>
+            <p class="music-subtitle">
               currently vibing 🎧
             </p>
 
@@ -2080,28 +2091,32 @@
             Favorites
           </h3>
 
-          <div class="favorite">
-            ♪ LOLI
-          </div>
+          <div class="favorite-list">
 
-          <div class="favorite">
-            ♪ Kiat Jud Dai
-          </div>
+            <div class="favorite">
+              <span class="favorite-icon">♪</span> LOLI
+            </div>
 
-          <div class="favorite">
-            ♪ type london
-          </div>
+            <div class="favorite">
+              <span class="favorite-icon">♪</span> Kiat Jud Dai
+            </div>
 
-          <div class="favorite">
-            ♪ Little Angel
-          </div>
+            <div class="favorite">
+              <span class="favorite-icon">♪</span> type london
+            </div>
 
-          <div class="favorite">
-            ♪ shluzov
-          </div>
+            <div class="favorite">
+              <span class="favorite-icon">♪</span> Little Angel
+            </div>
 
-          <div class="favorite">
-            ♪ Waving Flag
+            <div class="favorite">
+              <span class="favorite-icon">♪</span> shluzov
+            </div>
+
+            <div class="favorite">
+              <span class="favorite-icon">♪</span> Waving Flag
+            </div>
+
           </div>
 
         </div>
@@ -2123,8 +2138,7 @@
 
 
       <div
-        class="card snake"
-        style="text-align:center;"
+        class="card snake-card"
       >
 
         <img
